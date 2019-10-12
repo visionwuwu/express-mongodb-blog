@@ -1,0 +1,426 @@
+{{extend '../_layout/home.html'}} {{block 'title'}}博客详情页面{{/block}} {{block 'head'}}
+<link rel="stylesheet" href="/public/css/markdown-github.css">
+<style>
+    .panel .panel-heading .action i {
+        margin-right: 10px;
+    }
+    
+    .footer span i {
+        margin-left: 8px;
+        margin-right: 5px;
+    }
+    
+    .footer span {
+        font-size: 13px;
+        margin-right: 20px;
+        color: #999;
+    }
+    
+    .footer span:nth-child(3) {
+        color: #f78585!important;
+    }
+    
+    .footer span:nth-child(4) {
+        color: #00a67c;
+    }
+    
+    .footer span:nth-child(5) {
+        color: #999;
+    }
+    
+    .panel-title {
+        color: black;
+        font-size: 22px;
+        padding: 20px 0;
+        font-weight: 600;
+    }
+    
+    .panel-title small {
+        border-radius: 3px;
+        font-size: 16px;
+        padding: 5px 10px;
+        color: #fff !important;
+        background: #d9534f;
+    }
+    
+    .panel-title small i {
+        margin-right: 5px;
+    }
+    
+    .panel-body {
+        color: #333;
+        font-size: 15px;
+        line-height: 24px;
+        text-align: justify;
+    }
+    
+    .comment {
+        margin-top: 10px;
+    }
+    
+    .disabled {
+        opacity: .7;
+        cursor: not-allowed;
+    }
+    
+    .toast,
+    .toast1 {
+        background: aquamarine;
+        color: #fff;
+        padding: 10px;
+        margin-right: 10px;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+    
+     ::selection {
+        background: rgb(112, 206, 232);
+        color: #fff;
+    }
+    
+    .footer a {
+        color: inherit !important;
+        font-family: inherit !important;
+        text-decoration: none !important;
+    }
+    
+    .comment_tit {
+        background: #f7f7f7;
+        color: #777;
+        font-size: 16px;
+        padding: 3px 10px;
+        margin: 0;
+    }
+    
+    .comment_tit .useravatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        margin-right: 8px;
+    }
+    
+    .c_item {
+        display: flex;
+        height: 75px;
+        margin-bottom: 10px;
+    }
+    
+    .c_avatar {
+        width: 55px;
+        height: 55px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 1px rgba(0, 0, 0, .6);
+    }
+    
+    .c_main {
+        padding: 10px 15px;
+        margin-left: 10px;
+        flex: 1;
+        border-radius: 3px;
+        position: relative;
+        background: #fbfdfb;
+        border: 1px #eee solid;
+        font-size: 15px;
+        word-wrap: break-word;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .c_meta {
+        color: #444;
+        font-size: 14px;
+    }
+    
+    .c_author {
+        margin-right: 10px;
+    }
+    
+    .c_replay {
+        margin-left: 6px;
+        color: #00a67c;
+    }
+    
+    .not_comment {
+        height: 100px;
+        background: #d9534f;
+        color: #fff;
+        text-align: center;
+        line-height: 100px;
+        font-size: 20px;
+        border-radius: 6px;
+    }
+    
+    .replay {
+        margin: 10px 0 0;
+        padding: 0;
+        border: 1px solid #ddd;
+        display: none;
+    }
+    
+    .replay_tit {
+        overflow: hidden;
+        padding: 10px 20px;
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .replay_tit img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    
+    .replay_tit .usrename {
+        margin: 5px 10px 0 10px;
+        font-size: 16px;
+        color: #666;
+        flex: 1;
+        margin-left: 15px;
+    }
+    
+    .replay_tit .cancel {
+        line-height: 28px;
+        color: #fff;
+        font-size: 14px;
+        padding: 8px 15px;
+        background: #d9534f;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    
+    .replay_tit .cancel:hover {
+        background: red;
+    }
+    
+    .replay_body {
+        padding: 20px 20px 5px 20px;
+        position: relative;
+    }
+    
+    .replay_body textarea {
+        margin: 0px 0px 5px;
+        height: 68px;
+        display: block;
+    }
+    
+    .sendbtn {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+{{/block}}
+
+<!-- 哈哈 -->
+{{block 'content'}}
+<section class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">{{ blog.title }} <small><i class="glyphicon glyphicon-list-alt"></i> {{ blog.tag }}</small></h1>
+                        <div class="footer">
+                            <span class="nickname"><i class="glyphicon glyphicon-user"></i> {{ blog.author }}</span>
+                            <span>发表时间：<i class="glyphicon glyphicon-time"></i> {{ blog.public_time }}</span>
+                            <span>喜欢<i class="glyphicon glyphicon-heart"></i> {{ blog.like_num }}</span>
+                            <span><a href="#comment">评论<i class="glyphicon glyphicon-envelope"></i> {{ blog.review_num }}</a></span>
+                            <span>浏览次数<i class="glyphicon glyphicon-eye-open"></i> {{ blog.look_num }}</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">{{ blog.content }}</div>
+                </div>
+            </article>
+            <div class="sendComment">
+                <div class="form-group">
+                    <h3 class="comment_tit">
+                        {{if user}}
+                        <img class="useravatar" src="{{ user.avatar }}"> {{else}}
+                        <img class="useravatar" src="/public/images/avatar-default.png"> {{/if}} 发表评论
+                    </h3>
+                    <textarea class="form-control" name="hostcontent" cols="4" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" id="send">提交评论</button>
+                    <span class="toast"></span>
+                </div>
+            </div>
+            <div id="comment">
+            </div>
+        </div>
+    </div>
+
+    <!-- 回复 -->
+    <div class="replay">
+        <div class="replay_tit">
+            {{if user}}
+            <img src="{{ user.avatar }}"> {{else}}
+            <img src="/public/images/avatar-default.png"> {{/if}}
+            <span class="usrename">{{ user && user.nickname }}&nbsp;&nbsp;&nbsp;&nbsp;发表评论</span>
+            <span class="cancel">取消评论</span>
+        </div>
+        <div class="replay_body">
+            <textarea placeholder="写点什么..." name="replay" cols="100%" rows="3" class="form-control"></textarea>
+            <div class="sendbtn">
+                <span class="toast1"></span>
+                <button type="button" class="btn btn-success">提交评论</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{/block}} {{block 'script'}}
+<script>
+    $(function() {
+        // 处理发表和回复评论时的按钮和提示信息
+        function submitHandle($toast, msg) {
+            if (msg == '评论提交中,请耐心等待') {
+                $toast.removeClass('bg-danger');
+            } else {
+                $toast.addClass('bg-danger');
+            }
+            $toast.text(msg).css('opacity', 1).siblings('button').addClass('disabled').prop('disabled', true);
+            // 恢复
+            let timeId = setInterval(_ => {
+                $toast.css('opacity', 0).siblings('button').removeClass('disabled').prop('disabled', false);
+                clearInterval(timeId);
+            }, 2000);
+        }
+
+        // 验证通过发送ajax请求提交
+        function submitMsg(url, data, $toast) {
+            $.ajax({
+                url,
+                type: 'POST',
+                data,
+                dataType: 'json',
+                success(res) {
+                    if (res.code == 1001) {
+                        submitHandle($toast, res.message);
+                    } else {
+                        if (res.code == 1000) {
+                            // 发表成功重新获取列表数据
+                            let timeId = setTimeout(_ => {
+                                getComments();
+                                clearTimeout(timeId);
+                            }, 2000)
+                        } else {
+                            console.log('发表评论失败')
+                        }
+                        console.log(res);
+                    }
+                }
+            })
+        }
+        // 获取文章id
+        let id = decodeURI(location.search).slice(6, -1);
+        // 点击按钮发表评论
+        $('#send').on('click', function() {
+            // 找到toast
+            let $toast = $('.toast');
+            let val = $("textarea[name='hostcontent']").val().trim();
+            $("textarea[name='hostcontent']").val('');
+            if (/^[^a-zA-Z]+$/.test(val)) {
+                submitHandle($toast, '评论提交中,请耐心等待');
+                // 发送ajax请求
+                submitMsg('/comment', {
+                    hostcontent: val,
+                    id
+                }, $toast);
+            } else {
+                submitHandle($toast, '请输入中文吧，博主英文捉襟见肘!!!')
+            }
+        });
+
+
+        // 点击按钮回复评论
+        $('.sendbtn button').click(function() {
+            // 找到toast
+            let $toast = $('.toast1');
+            let val = $("textarea[name='replay']").val().trim();
+            let hostid = $(this).closest('.citem_box').data('hostid');
+            console.log(hostid);
+            $("textarea[name='replay']").val('');
+            if (/^[^a-zA-Z]+$/.test(val)) {
+                submitHandle($toast, '评论提交中,请耐心等待');
+                // 发送ajax请求
+                submitMsg('/recomment', {
+                    content: val,
+                    id,
+                    hostid
+                }, $toast);
+            } else {
+                submitHandle($toast, '请输入中文吧，博主英文捉襟见肘!!!')
+            }
+        });
+
+        // 出现添加评论
+        $('#comment').on('click', '.c_replay', function() {
+            $(this).closest('.citem_box').append($('.replay').css('display', 'block'));
+            $('.sendComment').hide(500);
+        });
+
+        // 隐藏添加评论
+        $('.cancel').click(function() {
+            $(this).closest('.replay').css('display', 'none')
+            $('.sendComment').show(500);
+        })
+
+
+        // 获取评论列表
+        function getComments() {
+            $.ajax({
+                url: '/clist',
+                type: 'GET',
+                data: {
+                    id
+                },
+                dataType: 'json',
+                success(reviewlist) {
+                    let tmpStr = '';
+                    reviewlist.forEach(item => {
+                        tmpStr += `
+                        <div class="citem_box" data-hostid="${item.hostid}">
+                            <div class="c_item">
+                                <img src="${item.hostavatar}" class="c_avatar">
+                                <div class="c_main">
+                                    <p class="c_tit">
+                                        ${item.hostcontent}
+                                    </p>
+                                    <div class="c_meta">
+                                        <span class="c_author">${item.hostname}</span>
+                                        <span>${item.date}</span>
+                                        <a class="c_replay" href="javascript:;">回复</a>
+                                    </div>
+                                </div>
+                            </div>`;
+                        item.reviewitem.forEach(c => {
+                            tmpStr += `
+                            <div class="c_item" style="margin-left: 70px;">
+                                <img src="${c.useravatar}" class="c_avatar">
+                                <div class="c_main">
+                                    <p class="c_tit">
+                                        ${c.content}
+                                    </p>
+                                    <div class="c_meta">
+                                        <span class="c_author">${c.username}</span>
+                                        <span>${c.date}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+                        });
+                        tmpStr += '</div>'
+                    });
+                    $('#comment').html(tmpStr);
+                }
+            })
+        }
+
+        getComments();
+    });
+</script>
+{{/block}}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 标题 -->
+    {{block 'title'}} {{/block}}
+    <!-- head -->
+    {{block 'head'}}{{/block}}
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/admin/common.css">
+</head>
+
+<body>
+
+    {{include '../_subtmp/admin/header.html'}}
+
+    <div class="admin_body">
+        {{include '../_subtmp/admin/aside.html'}} {{block 'content'}} {{/block}}
+    </div>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    {{block 'script'}} {{/block}}
+    <script>
+        $(function() {
+            // 切换菜单
+            $('.toggle_menu').click(function() {
+                $('.admin_body').toggleClass('toggle')
+            })
+        })
+    </script>
+</body>
+
+</html>

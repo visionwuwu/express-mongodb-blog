@@ -1,0 +1,103 @@
+.head_menu>li>a {
+    display: block;
+    padding: 15px 20px;
+    color: #474a4f;
+    font-size: 16px;
+}
+
+.head_menu>li>a>i {
+    margin-right: 15px;
+}
+
+.head_menu>li>a:hover {
+    background: #474a4f;
+    color: #fff;
+}
+
+.blog_header {
+    background: none repeat scroll 0 0 rgba(213, 100, 100, 1);
+    position: relative;
+}
+
+.container_inner {
+    max-width: 1226px;
+    height: 107px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.container_inner h1 {
+    margin: 0;
+    padding: 30px 0 20px 0;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 35px;
+}
+
+.container_inner h1 a {
+    text-decoration: none !important;
+}
+
+.container_inner h1 .V_logo {
+    letter-spacing: -2px;
+    position: relative;
+    color: #fff;
+    font-size: 54px;
+    text-shadow: 0 0 1px rgba(94, 255, 216, .8);
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    transition: all .1s ease-out;
+}
+
+.container_inner h1:hover .V_logo {
+    letter-spacing: 8px;
+}
+
+.container_inner h1 .V_bloger {
+    position: relative;
+    color: #fff;
+    font-weight: 400;
+    font-size: 24px;
+    text-shadow: 0 0 1px rgba(94, 255, 216, .8);
+    margin-left: 5px;
+    letter-spacing: 1px;
+    padding: 0;
+    z-index: 2;
+}
+
+.container_inner h1:hover .V_bloger {
+    left: 26px;
+    opacity: .2;
+}
+
+.blog_foot {
+    background: #333;
+    border-top: 8px solid #d56464;
+    position: relative;
+}
+
+.foot_inner {
+    max-width: 1226px;
+    padding: 16px 20px 14px;
+    margin: 0 auto;
+    color: #aaa;
+    text-align: center;
+    text-shadow: 0 -1px 0 #333;
+}
+
+.foot_inner a {
+    color: #aaa;
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+.navbar {
+    margin-bottom: 10px;
+}
+
+.v_main {
+    min-height: calc(100vh - 271px);
+}

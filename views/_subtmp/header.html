@@ -1,0 +1,68 @@
+<div class="blog_header">
+    <div class="container_inner">
+        <h1>
+            <a href="/">
+                <strong class="V_logo">初心</strong>
+                <span class="V_bloger">Vision武的个人博客</span>
+            </a>
+        </h1>
+    </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Link</a>
+                    </li>
+                    <li>
+                        <a href="#">Link</a>
+                    </li>
+                    <li>
+                        <a href="#">Link</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {{if user}}
+                    <li class="avatar">
+                        <a href="/settings/profile" style="padding: 0;">
+                            <img src="{{ user.avatar }}" alt="" width="50px" height="50px" style="border-radius: 50%;">
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <div class="btn-group" style="margin: 10px;">
+                            <button type="button" class="btn btn-primary">菜单</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                            <!-- <a class="dropdown-toggle" data-toggle="dropdown">菜单 <b class="caret"></b></a> -->
+                            <ul class="dropdown-menu head_menu">
+                                <li><a><i class="glyphicon glyphicon-user"></i>当前用户：{{ user.nickname }}</a></li>
+                                <li><a href="/myhome"><i class="glyphicon glyphicon-home"></i>个人主页 <span class="badge">3条消息</span>
+                                            </a></li>
+                                <li><a href="/settings/profile"><i class="glyphicon glyphicon-cog"></i>设置</a></li>
+                                <li><a href="/login_out"><i class="glyphicon glyphicon-off"></i>退出</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <a href="/new" class="btn btn-info" style="margin-top: 10px;">写博客</a> {{else}}
+                    <a href="/login" class="btn-primary btn navbar-btn">登录</a>
+                    <a href="/resgiter" class="btn btn-success navbar-btn">注册</a> {{/if}}
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+</div>

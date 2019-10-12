@@ -1,0 +1,21 @@
+<div class="admin_header">
+    <div class="left_menu">
+        <a><i class="glyphicon glyphicon-fire"></i></a>
+        <a href="/"><i class="glyphicon glyphicon-home" title="查看站点"></i>Vision武的博客</a>
+        <a href="/message"><i class="glyphicon glyphicon-comment"></i>{{ msg.aboutme_num }}</a>
+    </div>
+    <div class="tit">
+        <a href="/new" title="新建文章"><i class="glyphicon glyphicon-plus"></i>新建</a>
+    </div>
+    <div class="right_menu">
+        <p>嗨，{{ user.nickname }}<img src="{{user.avatar}}" class="s_avatar"></p>
+        <div class="dorpdowm_menu">
+            <img src="{{user.avatar}}" class="l_avatar">
+            <p>
+                <a href="javascript:;" class="nickname">{{  user.nickname }}</a>
+                <a href="/settings/profile" class="profile">个人资料</a>
+                <a href="/login_out" class="login_out">退出登录</a>
+            </p>
+        </div>
+    </div>
+</div>

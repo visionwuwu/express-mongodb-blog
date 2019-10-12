@@ -1,0 +1,77 @@
+{{extend '../_layout/admin.html'}}
+
+<!-- 标题文章列表 -->
+{{block 'title'}}
+<title>{{ title }}</title>
+{{/block}}
+<!-- 主内容区 -->{{block 'content'}}
+<div class="content">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h3 style="display: inline-block;">所有文章</h3> <a href="#" class="btn btn-sm btn-primary">写文章</a></div>
+        <div class="panel-body">
+            <form action="" method="POST" class="form-inline pull-left">
+                <div class="form-group">
+                    <select name="" id="" class="form-control">
+                        <option value="">哈哈哈</option>
+                        <option value="">都是对的多</option>
+                        <option value="">苟富贵</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="" id="" class="form-control">
+                        <option value="">辅导费</option>
+                        <option value="">苟富贵</option>
+                        <option value="">发的发</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">筛选</button>
+            </form>
+            <ul class="pagination pagination-sm pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+        <!-- Table -->
+        <table class="table table-hover table-bordered table-responsive table-striped">
+            <thead class="text-center">
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>标题</th>
+                    <th>作者</th>
+                    <th>分类目录</th>
+                    <th>发表时间</th>
+                    <th>浏览次数</th>
+                    <th>点赞次数</th>
+                    <th>评论条数</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                {{ each blogs}}
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>{{ $value.author }}</td>
+                    <td>{{ $value.title }}</td>
+                    <td>{{ $value.tag }}</td>
+                    <td>{{ $value.public_time }}</td>
+                    <td>{{ $value.look_num }}</td>
+                    <td>{{ $value.like_num }}</td>
+                    <td>{{ $value.review_num }}</td>
+                    <td>
+                        <a href="#" class="btn btn-danger btn-sm">删除</a>
+                        <a href="#" class="btn btn-primary btn-sm">编辑</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{/block}}

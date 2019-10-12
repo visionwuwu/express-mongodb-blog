@@ -1,0 +1,36 @@
+{{extend '../_layout/admin.html'}}
+
+<!-- 网站标题的坑 -->
+{{block 'title'}}
+<title>{{title}}</title>{{/block}}
+
+<!-- 主内容区 -->
+{{block 'content'}}
+<div class="admin_main">
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>仪表盘!</h1>
+            <p>welcome to yours article</p>
+            <p>
+                <a class="btn btn-primary btn-lg">写文章</a>
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">概述</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item bg-info"><i class="glyphicon glyphicon-pushpin" style="margin-right: 15px;"></i> 文章总数：
+                        <span class="badge badge-primary">{{ msg.blog_num }}</span>
+                    </li>
+                    <li class="list-group-item bg-warning"><i class="glyphicon glyphicon-envelope" style="margin-right: 15px;"></i>总评论数：<span class="badge badge-wraning">{{ msg.review_num }}</span></li>
+                    <li class="list-group-item bg-success"><i class="glyphicon glyphicon-comment" style="margin-right: 15px;"></i>未查看评论<span class="badge badge-danger">{{ msg.aboutme_num }}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}} {{block 'script'}} {{/block}}

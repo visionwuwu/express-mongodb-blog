@@ -1,0 +1,49 @@
+{{extend '../_layout/home.html'}} {{block 'title'}}{{'多人博客 - admin'}}{{/block}} {{block 'content'}}
+<section class="container v_main">
+    {{include '../_subtmp/settings_nav.html'}}
+    <div class="col-md-5">
+        <div class="subhead">
+            <h2>修改密码</h2>
+        </div>
+        <hr>
+        <form method="POST" action="/admin" id="admin">
+            <h3 class="tips bg-danger"></h3>
+            <input type="hidden" name="_id" value="{{ user._id }}">
+            <div class="form-group has-feedback">
+                <label>当前密码</label>
+                <input type="password" class="form-control" name="password">
+                <span class="form-control-feedback"></span>
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <label>新的密码</label>
+                <input type="password" class="form-control" name="newpsw" id="newpsw">
+                <span class="form-control-feedback"></span>
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <label>确认密码</label>
+                <input type="password" class="form-control" name="surepsw" id="surepsw">
+                <span class="form-control-feedback"></span>
+                <span class="help-block"></span>
+            </div>
+            <button type="submit" class="btn btn-success">保存</button>
+        </form>
+        <div class="subhead">
+            <h2>注销账号</h2>
+            <hr>
+        </div>
+        <div>
+            <p>一旦注销，不可找回，请谨慎操作</p>
+            <button class="btn btn-danger">删除</button>
+        </div>
+        <hr>
+    </div>
+</section>
+{{/block}}
+
+<!-- 脚本填坑 -->
+{{block 'script'}}
+<script src="/public/js/commons.js"></script>
+<script src="/public/js/admin.js"></script>
+{{/block}}

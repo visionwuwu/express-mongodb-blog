@@ -1,0 +1,97 @@
+    .panel .panel-heading .action i {
+        margin-right: 10px;
+    }
+    
+    .footer span i {
+        margin-left: 8px;
+        margin-right: 5px;
+    }
+    
+    .footer span {
+        font-size: 13px;
+        margin-right: 20px;
+        color: #999;
+    }
+    
+    .footer span:nth-child(3) {
+        color: #f78585!important;
+    }
+    
+    .footer span:nth-child(4) {
+        color: #00a67c;
+    }
+    
+    .footer span:nth-child(5) {
+        color: #999;
+    }
+    
+    .panel-title {
+        color: black;
+        font-size: 22px;
+        padding: 20px 0;
+        font-weight: 600;
+    }
+    
+    .panel-title small {
+        border-radius: 3px;
+        font-size: 16px;
+        padding: 5px 10px;
+        color: #fff;
+        background: #d9534f;
+    }
+    
+    .panel-title small i {
+        margin-right: 5px;
+    }
+    
+    .panel-body {
+        color: #333;
+        font-size: 15px;
+        line-height: 24px;
+        text-align: justify;
+    }
+    
+    .comment {
+        margin-top: 10px;
+    }
+    
+    .disabled {
+        opacity: .7;
+        cursor: not-allowed;
+    }
+    
+    .toast {
+        background: aquamarine;
+        color: #fff;
+        padding: 10px;
+        margin-right: 10px;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+    
+     ::selection {
+        background: rgb(112, 206, 232);
+        color: #fff;
+    }
+    
+    .footer a {
+        color: inherit !important;
+        font-family: inherit !important;
+        text-decoration: none !important;
+    }
+    
+    .comment_tit {
+        background: #f7f7f7;
+        color: #777;
+        font-size: 16px;
+        padding: 3px 10px;
+        margin: 0;
+    }
+    
+    .comment_tit .useravatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        margin-right: 8px;
+    }

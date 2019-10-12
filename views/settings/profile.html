@@ -1,0 +1,70 @@
+{{extend '../_layout/home.html'}} {{block 'title'}}博客个人profile{{/block}} {{block 'content'}}
+<section class="container v_main">
+    {{include '../_subtmp/settings_nav.html'}}
+    <div class="col-md-5">
+        <form id="profile" method="POST" action="/profile" enctype="multipart/form-data">
+            <input type="hidden" name="_id" value="{{ user && user._id }}">
+            <div class="form-group">
+                <label for="">账号</label>
+                <p class="form-control-static">{{ user && user.email }}</p>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="">昵称</label>
+                <input type="text" class="form-control" name="nickname" value="{{ user && user.nickname }}">
+                <span class="form-control-feedback"></span>
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="">介绍</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">性别</label>
+                <div>
+                    <label class="radio-inline">
+                    {{if user && user.gender == 0}}
+                        <input type="radio" name="gender" id="inlineRadio1" value="{{user.gender}}" checked> 男
+                    {{else}}
+                        <input type="radio" name="gender" id="inlineRadio1" value="0"> 男
+                    {{/if}}
+            </label>
+                    <label class="radio-inline">
+                {{if user && user.gender == 1}}
+                    <input type="radio" name="gender" value="{{user && user.gender}}" checked> 女
+                {{else}}
+                    <input type="radio" name="gender" value="1"> 女
+                {{/if}}
+            </label>
+                    <label class="radio-inline">
+                    {{if user && user.gender == -1}}
+                        <input type="radio" name="gender" value="{{user && user.gender}}" checked> 保密
+                    {{else}}
+                        <input type="radio" name="gender" value="-1"> 保密
+                    {{/if}}
+            </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">生日</label>
+                <input type="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">保存</button>
+        </form>
+    </div>
+    <div class="col-md-2 profile-avatar">
+        <dl>
+            <dt>头像设置</dt>
+            <dd>
+                <div style="margin-bottom: 10px;position: relative;">
+                    <input type="file" name="avatar" accept=".png,.jpg,.jpeg" style="position: absolute;width: 100%;height: 100%;top:0;left: 0;opacity: 0;z-index: 999;" form="profile">
+                    <button class="btn btn-default" href="">Upload new picture</button>
+                </div>
+                <img class="avatar" width="150" height="150" src="{{user && user.avatar}}">
+            </dd>
+        </dl>
+    </div>
+</section>
+{{/block}} {{block 'script'}}
+<script src="/public/js/commons.js"></script>
+<script src="/public/js/profile.js"></script>
+{{/block}}

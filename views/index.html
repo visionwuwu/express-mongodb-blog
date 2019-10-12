@@ -1,0 +1,111 @@
+<!-- 先继承我们的父模板 -->
+{{extend './_layout/home.html'}}
+
+<!-- 接下来就是我们的填坑时刻 -->
+<!-- 网站标题的坑 -->
+{{block 'title'}}{{ title }}{{/block}}
+
+<!-- 网站head引入的css的坑 -->
+{{block 'head'}}
+<link rel="stylesheet" href="/public/css/main.css"> {{/block}}
+
+
+<!-- 网站的main主内容区域的坑 -->
+{{block 'content'}}
+<div class="container">
+    {{if bloglist}} {{ each bloglist}}
+    <div class="media-list">
+        <div class="media">
+            <div class="heading">
+                <span class="tag">{{ $value.tag }}</span>
+                <h3 class="title"><a href="/dest?_id={{ $value._id }}">{{ $value.title }}</a></h3>
+            </div>
+            <div class="media-left">
+                <a href="/dest?_id={{ $value._id }}">
+                    <img class="media-object" width="100px" height="100px" src="{{ $value.avatar }}" alt="Image">
+                </a>
+            </div>
+            <div class="media-body">
+                <p class="content">{{ $value.content }}</p>
+                <div class="footer">
+                    <span class="nickname">
+                        <i class="glyphicon glyphicon-user"></i>{{ $value.author }}
+                    </span>
+                    <span class="time">
+                        <i class="glyphicon glyphicon-time"></i>{{ $value.public_time }}
+                    </span>
+                    <span>
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                        浏览次数{{ $value.look_num }}
+                    </span>
+                    <span class="pinglun">
+                        <a href="/dest?_id={{ $value._id }}">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            评论{{ $value.review_num }}
+                        </a>
+                    </span>
+                    <span class="like" data-id="{{ $value._id }}">
+                            <span class="add1">+1</span>
+                    <a href="javascript:;">
+                                喜欢<i class="glyphicon glyphicon-heart"></i>
+                                <span class="like_num">{{ $value.like_num }}</span>
+                            </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}} {{else}}
+    <h1 class="bg-danger" style="color: #fff;">没人来访问，我好桑心呀！</h1>
+    {{/if}}
+
+</div>
+{{/block}} {{block 'script'}}
+<script>
+    $(function() {
+        // 将点赞的文章存放在本地离线存储里面
+        // {[id]:id}
+        let clickList = JSON.parse(localStorage.getItem('cList') || '[]');
+        // 点赞
+        $('.like').on('click', function() {
+            let $this = $(this);
+            let id = $(this).data('id').slice(1, -1);
+            // 遍历是否存在
+            let isExits = clickList.some(item => {
+                if (item[id] == id) return true;
+            });
+            // 不存在添加
+            if (!isExits) {
+                let $like_num = $this.find('.like_num')
+                let like_num = parseInt($like_num.text()) + 1;
+                $like_num.text(like_num);
+                clickList.push({
+                    [id]: id
+                });
+
+                // 点赞特效
+                $(this).find('.add1').addClass('scale');
+
+                // 存储在本地离线存储
+                localStorage.setItem('cList', JSON.stringify(clickList));
+
+                // 发送ajax
+                $.ajax({
+                    url: '/clicks',
+                    type: 'GET',
+                    data: {
+                        like_num,
+                        id
+                    },
+                    dataType: 'json',
+                    success(data) {
+                        console.log(data.message)
+                    }
+                })
+            } else {
+                alert('您，已经点过赞了！')
+            }
+        });
+    });
+</script>
+{{/block}}

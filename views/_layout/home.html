@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{block 'title'}}My Sit{{/block}}</title>
+    {{block 'head'}}{{/block}}
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/common.css"> {{block 'link'}}{{/block}}
+</head>
+
+<body>
+
+    <!-- 头部子模板 -->
+    {{include '../_subtmp/header.html'}}
+
+    <!-- content内容坑 -->
+    {{block 'content'}}{{/block}}
+
+    <!-- footer子模板 -->
+    {{include '../_subtmp/footer.html'}}
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- 填写script的坑 -->
+    {{block 'script'}} {{/block}}
+
+</body>
+
+</html>

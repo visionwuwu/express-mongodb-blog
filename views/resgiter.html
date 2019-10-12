@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <a href="/">
+                <img src="/public/images/logo3.png" alt="">
+            </a>
+            <h1 class="tips">用户注册</h1>
+        </div>
+        <form id="register_form" method="post" action="/resgiter">
+            <div class="form-group has-feedback">
+                <label for="email">邮箱</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus>
+                <span class="form-control-feedback"></span>
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="nickname">昵称</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname">
+                <span class="form-control-feedback"></span>
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="password">密码</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <span class="form-control-feedback"></span>
+                <span class="help-block"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-block" id="resgiter">注册</button>
+        </form>
+        <div class="message">
+            <p>已有账号? <a href="/login">点击登录</a>.</p>
+        </div>
+    </div>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/public/js/commons.js"></script>
+    <script src="/public/js/resgiter.js"></script>
+</body>
+
+</html>
